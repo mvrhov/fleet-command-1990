@@ -1,0 +1,15 @@
+services:
+  battleship:
+    build: .
+    container_name: battleship
+    restart: unless-stopped
+    ports:
+      - "8100:8100"
+    environment:
+      PORT: "8100"
+      DB_PATH: /data/battleship.db
+    volumes:
+      - battleship_data:/data
+
+volumes:
+  battleship_data:
