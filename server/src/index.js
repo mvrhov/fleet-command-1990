@@ -86,11 +86,22 @@ const server = http.createServer((req, res) => {
     return;
   }
   if (serveStatic(req, res)) return;
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Battleship server. Connect via WebSocket.");
+  res.writeHead(404, { "Content-Type": "text/plain" });
+  res.end("Not found");
 });
 
-const wss = new WebSocketServer({ server });
+const wss = new WebSocketServer({ noServer: true });
+
+server.on("upgrade", (req, socket, head) => {
+  const url = req.url || "/";
+  if (url === "/ws" || url === "/" || url.startsWith("/ws?")) {
+    wss.handleUpgrade(req, socket, head, (ws) => {
+      wss.emit("connection", ws, req);
+    });
+  } else {
+    socket.destroy();
+  }
+});
 
 // Map of gameId -> Map of slot -> ws
 const connections = new Map();
