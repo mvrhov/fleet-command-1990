@@ -29,14 +29,13 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Battleship — Online Two-Player" },
+      { name: "description", content: "Play Battleship online with a friend using a 4-character room code. Modern nautical design, classic 1990 fleet." },
+      { name: "author", content: "Battleship" },
+      { property: "og:title", content: "Battleship — Online Two-Player" },
+      { property: "og:description", content: "Play Battleship online with a friend using a 4-character room code." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
