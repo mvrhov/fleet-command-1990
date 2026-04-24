@@ -17,3 +17,7 @@ services:
 
 volumes:
   battleship_data:
+
+networks:
+  traefik:
+    external: true
