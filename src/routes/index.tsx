@@ -40,6 +40,8 @@ function Index() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.opponent.shots.length]);
 
+  if (demo) return <DemoScreen onExit={() => setDemo(false)} />;
+
   // Connection problem screen
   if (conn === "error" || conn === "closed") {
     return (
