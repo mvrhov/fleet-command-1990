@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useGameSocket } from "@/lib/useGameSocket";
 import { PlacementScreen } from "@/components/PlacementScreen";
 import { BattleScreen } from "@/components/BattleScreen";
+import { DemoScreen } from "@/components/DemoScreen";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -16,6 +17,9 @@ function Index() {
   const [joinCode, setJoinCode] = useState("");
   const [copied, setCopied] = useState(false);
   const [banner, setBanner] = useState<string | null>(null);
+  const [demo, setDemo] = useState(false);
+
+  if (demo) return <DemoScreen onExit={() => setDemo(false)} />;
 
   // Show transient HIT/MISS/SUNK banners
   const lastMine = state?.you.shots[state.you.shots.length - 1];
@@ -99,6 +103,14 @@ function Index() {
               Join game
             </Button>
           </form>
+          <div className="flex items-center gap-3 my-4">
+            <div className="h-px flex-1 bg-border" />
+            <span className="text-xs text-muted-foreground">or</span>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <Button variant="secondary" className="w-full" onClick={() => setDemo(true)}>
+            Demo mode (AI vs AI)
+          </Button>
           {error && <p className="text-destructive text-sm text-center mt-3">{error}</p>}
         </Card>
       </Wrap>
