@@ -1,4 +1,6 @@
 import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
 import { WebSocketServer } from "ws";
 import { db } from "./db.js";
 import {
@@ -11,6 +13,68 @@ import {
 } from "./game.js";
 
 const PORT = Number(process.env.PORT) || 8080;
+const STATIC_DIR = process.env.STATIC_DIR || "";
+
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "application/javascript; charset=utf-8",
+  ".mjs": "application/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".gif": "image/gif",
+  ".webp": "image/webp",
+  ".ico": "image/x-icon",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
+  ".ttf": "font/ttf",
+  ".map": "application/json; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8",
+};
+
+function safeJoin(root, urlPath) {
+  const decoded = decodeURIComponent(urlPath.split("?")[0]);
+  const target = path.normalize(path.join(root, decoded));
+  if (!target.startsWith(path.resolve(root))) return null;
+  return target;
+}
+
+function serveStatic(req, res) {
+  if (!STATIC_DIR) return false;
+  const root = path.resolve(STATIC_DIR);
+  if (!fs.existsSync(root)) return false;
+
+  let filePath = safeJoin(root, req.url || "/");
+  if (!filePath) {
+    res.writeHead(403);
+    res.end("Forbidden");
+    return true;
+  }
+
+  try {
+    const stat = fs.existsSync(filePath) ? fs.statSync(filePath) : null;
+    if (stat && stat.isDirectory()) {
+      filePath = path.join(filePath, "index.html");
+    }
+    if (!fs.existsSync(filePath)) {
+      // SPA fallback
+      filePath = path.join(root, "index.html");
+      if (!fs.existsSync(filePath)) return false;
+    }
+    const ext = path.extname(filePath).toLowerCase();
+    const type = MIME[ext] || "application/octet-stream";
+    res.writeHead(200, { "Content-Type": type });
+    fs.createReadStream(filePath).pipe(res);
+    return true;
+  } catch {
+    res.writeHead(500);
+    res.end("Server error");
+    return true;
+  }
+}
 
 const server = http.createServer((req, res) => {
   if (req.url === "/health") {
@@ -18,6 +82,7 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify({ ok: true }));
     return;
   }
+  if (serveStatic(req, res)) return;
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end("Battleship server. Connect via WebSocket.");
 });
