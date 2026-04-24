@@ -1,5 +1,6 @@
 services:
   battleship:
+    container_name: battleship
     build:
       context: .
       dockerfile: Dockerfile
