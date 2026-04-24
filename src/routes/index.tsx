@@ -73,7 +73,7 @@ function Index() {
       <Wrap>
         <div className="text-center mb-8">
           <h1 className="text-5xl font-bold text-primary tracking-tight">Battleship</h1>
-          <p className="mt-2 text-muted-foreground">Online two-player · 1990 fleet</p>
+          <p className="mt-2 text-muted-foreground">Online two-player</p>
         </div>
 
         <Card className="p-6 max-w-md w-full">
