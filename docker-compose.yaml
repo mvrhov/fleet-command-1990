@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: battleship-fullstack
     restart: unless-stopped
     ports:
       - "1990:1990"
