@@ -153,5 +153,23 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    background-image:
+      radial-gradient(ellipse at top, color-mix(in oklab, var(--ocean) 12%, transparent), transparent 60%),
+      radial-gradient(ellipse at bottom, color-mix(in oklab, var(--primary) 8%, transparent), transparent 60%);
+    min-height: 100vh;
   }
 }
+
+@keyframes splash {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.4); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes flash-hit {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.6); }
+  100% { transform: scale(1); }
+}
+.shot-miss { animation: splash 0.35s ease-out; }
+.shot-hit { animation: flash-hit 0.4s ease-out; }
+
