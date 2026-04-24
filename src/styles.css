@@ -63,14 +63,21 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* Nautical palette */
+  --background: oklch(0.985 0.005 220);
+  --foreground: oklch(0.22 0.05 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.22 0.05 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --popover-foreground: oklch(0.22 0.05 250);
+  --primary: oklch(0.32 0.09 250);
+  --primary-foreground: oklch(0.985 0.005 220);
+  --ocean: oklch(0.55 0.13 235);
+  --ocean-foreground: oklch(0.985 0.005 220);
+  --hit: oklch(0.6 0.22 25);
+  --miss: oklch(0.97 0.01 230);
+  --sunk: oklch(0.28 0.06 250);
+  --grid-line: oklch(0.78 0.04 230);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
