@@ -13,6 +13,8 @@ services:
       STATIC_DIR: /app/public
     volumes:
       - battleship_data:/data
+    networks:
+      - traefik
 
 volumes:
   battleship_data:
