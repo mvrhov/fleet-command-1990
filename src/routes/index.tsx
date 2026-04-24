@@ -19,8 +19,6 @@ function Index() {
   const [banner, setBanner] = useState<string | null>(null);
   const [demo, setDemo] = useState(false);
 
-  if (demo) return <DemoScreen onExit={() => setDemo(false)} />;
-
   // Show transient HIT/MISS/SUNK banners
   const lastMine = state?.you.shots[state.you.shots.length - 1];
   const lastTheirs = state?.opponent.shots[state.opponent.shots.length - 1];
