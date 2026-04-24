@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install all deps (incl. dev) for the build
 COPY package.json package-lock.json* bun.lockb* ./
-RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+RUN npm install --no-audit --no-fund
 
 # Copy the rest of the frontend source
 COPY . .
