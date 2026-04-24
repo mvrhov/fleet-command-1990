@@ -23,14 +23,12 @@ export type ConnState = "idle" | "connecting" | "open" | "closed" | "error";
 const SESSION_KEY = "battleship_session";
 const CODE_KEY = "battleship_code";
 
+const DEFAULT_WS_URL = "wss://battleship.vnct.xyz";
+
 function getWsUrl(): string {
   const env = (import.meta as any).env?.VITE_WS_URL as string | undefined;
   if (env) return env;
-  if (typeof window !== "undefined") {
-    const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-    return `${proto}//${window.location.hostname}:8080`;
-  }
-  return "ws://localhost:8080";
+  return DEFAULT_WS_URL;
 }
 
 export function useGameSocket() {
