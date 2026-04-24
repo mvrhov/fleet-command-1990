@@ -45,7 +45,10 @@ function safeJoin(root, urlPath) {
 function serveStatic(req, res) {
   if (!STATIC_DIR) return false;
   const root = path.resolve(STATIC_DIR);
-  if (!fs.existsSync(root)) return false;
+  if (!fs.existsSync(root)) {
+    console.warn(`[static] STATIC_DIR ${root} does not exist`);
+    return false;
+  }
 
   let filePath = safeJoin(root, req.url || "/");
   if (!filePath) {
@@ -335,4 +338,10 @@ wss.on("connection", (ws) => {
 
 server.listen(PORT, () => {
   console.log(`Battleship server listening on :${PORT}`);
+  if (STATIC_DIR) {
+    const root = path.resolve(STATIC_DIR);
+    console.log(`[static] Serving from ${root} (exists: ${fs.existsSync(root)})`);
+  } else {
+    console.log(`[static] STATIC_DIR not set — static serving disabled`);
+  }
 });
