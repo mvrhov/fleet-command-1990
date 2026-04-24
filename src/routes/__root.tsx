@@ -33,9 +33,13 @@ export const Route = createRootRoute({
       { name: "description", content: "Play Battleship online with a friend using a 4-character room code. Modern nautical design, classic 1990 fleet." },
       { name: "author", content: "Battleship" },
       { property: "og:title", content: "Battleship — Online Two-Player" },
-      { property: "og:description", content: "Play Battleship online with a friend using a 4-character room code." },
+      { property: "og:description", content: "Play Battleship online with a friend using a 4-character room code. Modern nautical design, classic 1990 fleet." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Battleship — Online Two-Player" },
+      { name: "twitter:description", content: "Play Battleship online with a friend using a 4-character room code. Modern nautical design, classic 1990 fleet." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fa824c8a-0d69-4f1e-8dd5-dadc88808f5c/id-preview-f90ad7e2--59872766-e6de-4e3a-aa53-5faa15bdb135.lovable.app-1777027500957.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fa824c8a-0d69-4f1e-8dd5-dadc88808f5c/id-preview-f90ad7e2--59872766-e6de-4e3a-aa53-5faa15bdb135.lovable.app-1777027500957.png" },
     ],
     links: [
       {
