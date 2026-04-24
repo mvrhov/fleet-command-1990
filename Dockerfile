@@ -1,6 +1,3 @@
-// ============= Full file contents =============
-# syntax=docker/dockerfile:1.7
-
 # ---------- Stage 1: build the client (TanStack Start) ----------
 FROM node:20-slim AS client-build
 WORKDIR /app
