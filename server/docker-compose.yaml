@@ -1,6 +1,8 @@
 services:
   battleship:
-    build: .
+    build:
+      context: ..
+      dockerfile: Dockerfile
     container_name: battleship
     restart: unless-stopped
     ports:
@@ -8,6 +10,7 @@ services:
     environment:
       PORT: "1990"
       DB_PATH: /data/battleship.db
+      STATIC_DIR: /app/public
     volumes:
       - battleship_data:/data
 
