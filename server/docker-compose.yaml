@@ -4,9 +4,9 @@ services:
     container_name: battleship
     restart: unless-stopped
     ports:
-      - "8100:8100"
+      - "1990:1990"
     environment:
-      PORT: "8100"
+      PORT: "1990"
       DB_PATH: /data/battleship.db
     volumes:
       - battleship_data:/data
