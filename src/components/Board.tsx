@@ -53,11 +53,11 @@ export function Board({
   }
 
   return (
-    <div className="inline-block select-none">
+    <div className="inline-block select-none w-full max-w-[640px]">
       <div
         className="grid gap-px bg-grid-line p-px rounded-lg overflow-hidden shadow-lg"
         style={{
-          gridTemplateColumns: `auto repeat(${BOARD_SIZE}, minmax(0, 1fr))`,
+          gridTemplateColumns: `clamp(1.25rem,4vw,2rem) repeat(${BOARD_SIZE}, minmax(0, 1fr))`,
         }}
       >
         <div className="bg-card" />
