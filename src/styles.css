@@ -59,18 +59,31 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-ocean: var(--ocean);
+  --color-ocean-foreground: var(--ocean-foreground);
+  --color-hit: var(--hit);
+  --color-miss: var(--miss);
+  --color-sunk: var(--sunk);
+  --color-grid-line: var(--grid-line);
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* Nautical palette */
+  --background: oklch(0.985 0.005 220);
+  --foreground: oklch(0.22 0.05 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.22 0.05 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --popover-foreground: oklch(0.22 0.05 250);
+  --primary: oklch(0.32 0.09 250);
+  --primary-foreground: oklch(0.985 0.005 220);
+  --ocean: oklch(0.55 0.13 235);
+  --ocean-foreground: oklch(0.985 0.005 220);
+  --hit: oklch(0.6 0.22 25);
+  --miss: oklch(0.97 0.01 230);
+  --sunk: oklch(0.28 0.06 250);
+  --grid-line: oklch(0.78 0.04 230);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -140,5 +153,23 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    background-image:
+      radial-gradient(ellipse at top, color-mix(in oklab, var(--ocean) 12%, transparent), transparent 60%),
+      radial-gradient(ellipse at bottom, color-mix(in oklab, var(--primary) 8%, transparent), transparent 60%);
+    min-height: 100vh;
   }
 }
+
+@keyframes splash {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.4); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes flash-hit {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.6); }
+  100% { transform: scale(1); }
+}
+.shot-miss { animation: splash 0.35s ease-out; }
+.shot-hit { animation: flash-hit 0.4s ease-out; }
+
